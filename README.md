@@ -123,10 +123,8 @@ This project is a modern and responsive frontend for the Prisma application. It 
 
 ## Contributors
 
-- **[Your Name]** - Frontend Development and Design
+- **Meraj Ali** - Frontend Development and Design
 
 ---
 
-## License
 
-This project is licensed under the MIT License.
