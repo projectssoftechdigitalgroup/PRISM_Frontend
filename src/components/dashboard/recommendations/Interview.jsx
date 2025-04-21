@@ -1,0 +1,98 @@
+import React, { useEffect, useRef, useState } from 'react';
+import interviewQuestions from '../../../data/questions'; 
+import Progress from './Progress';
+import { PulseLoader } from 'react-spinners';
+
+const Interview = ({ title }) => {
+  const [text, setText] = useState('');
+  const [qaPairs, setQaPairs] = useState([]); 
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showLoader, setShowLoader] = useState(false);
+  const [progress, setProgress] = useState(0);
+  const textareaRef = useRef(null);
+
+  const questions = interviewQuestions[title.toLowerCase()] || [];
+
+  useEffect(() => {
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.style.height = 'auto';
+      textarea.style.height = textarea.scrollHeight + 'px';
+    }
+  }, [text]);
+
+  useEffect(() => {
+    if (questions.length && currentIndex === 0 && qaPairs.length === 0) {
+      setQaPairs([{ type: 'question', content: questions[0].question }]);
+    }
+  }, [questions]);
+
+  const handleSend = () => {
+    if (!text.trim() || showLoader) return;
+
+    const answer = text.trim();
+    const nextIndex = currentIndex + 1;
+    setQaPairs(prev => [...prev, { type: 'answer', content: answer }]);
+    setText('');
+    setShowLoader(true);
+
+    setTimeout(() => {
+      setShowLoader(false);
+      if (nextIndex < questions.length) {
+        setQaPairs(prev => [...prev, { type: 'question', content: questions[nextIndex].question }]);
+        setCurrentIndex(nextIndex);
+        setProgress(((nextIndex) / questions.length) * 100);
+      } else {
+        setProgress(100);
+      }
+    }, 1000);  
+  }
+
+  return (
+    <div className="relative min-h-screen pb-24 px-4">
+      <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text text-transparent mb-6">
+        Interview For Category: {title}
+      </p>
+
+      <Progress progress={progress} />
+
+      <div className="mt-6 space-y-4 w-96 lg:w-[800px]">
+        {qaPairs.map((item, index) => (
+          <div
+            key={index}
+            className={`px-4 py-3 rounded-lg ${item.type === 'question'
+              ? 'bg-gray-100 text-black self-start'
+              : 'bg-purple-100 text-black self-end ml-[50%]'
+              } w-fit max-w-[90%]`}
+          >
+            {item.content}
+          </div>
+        ))}
+        {showLoader && (
+          <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 rounded-lg w-fit">
+            <PulseLoader size={8} color="#7e22ce" />
+          </div>
+        )}
+      </div>
+
+      <div className="fixed bottom-4 right-0 w-[70%] flex items-end gap-2 z-50">
+        <textarea
+          ref={textareaRef}
+          rows={1}
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+          placeholder="Type your response..."
+          className="flex-grow px-4 py-3 rounded-xl border border-gray-600 bg-gradient-to-br from-gray-800 to-gray-900 text-white resize-none focus:outline-none focus:ring-2 focus:ring-purple-500 text-lg"
+        />
+        <button
+          onClick={handleSend}
+          className="bg-purple-600 hover:bg-purple-700 text-white px-5 py-3 rounded-xl shadow transition duration-300"
+        >
+          Send
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Interview;
