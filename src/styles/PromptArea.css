@@ -1,3 +1,6 @@
+*{
+  overflow-y: hidden;
+}
 .prompt-area {
   position: fixed; /* Fix the position at the bottom */
   bottom: 20px; /* Add space from the bottom */

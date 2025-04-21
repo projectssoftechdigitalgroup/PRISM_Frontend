@@ -105,22 +105,6 @@ This project is a modern and responsive frontend for the Prisma application. It 
 
 ---
 
-## Screenshots
-
-### Sidebar (Open)
-![Sidebar Open](#)
-
-### Sidebar (Closed)
-![Sidebar Closed](#)
-
-### Content Area
-![Content Area](#)
-
-### Prompt Area
-![Prompt Area](#)
-
----
-
 ## Contributors
 
 - **Meraj Ali** - Frontend Development and Design

@@ -1,3 +1,6 @@
+*{
+  overflow-y: hidden;
+}
 /* Sidebar container styles */
 .sidebar {
   width: 300px; /* Increased width when opened */
