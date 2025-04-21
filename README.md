@@ -10,10 +10,10 @@ This project is a modern and responsive frontend for the Prisma application. It 
 
 ### 1. **Sidebar**
 - A collapsible sidebar that can be toggled open or closed.
-- Includes a logo and buttons for navigation (`Profile` and `Interview Agent`).
+- Includes a logo and buttons for navigation (`Profile` and `Recommendation`).
 - Smooth animations for opening and closing.
 - Fully responsive:
-  - Adjusts to a horizontal layout on smaller screens.
+  - Adjusts layout dynamically based on screen size.
   - Compact width when closed.
 
 ### 2. **Content Area**
@@ -22,22 +22,22 @@ This project is a modern and responsive frontend for the Prisma application. It 
 - Fully responsive:
   - Centers content with space on both sides.
   - Adjusts font sizes and layout for smaller screens.
+  - Dynamically adjusts layout based on the sidebar state.
 
 ### 3. **Prompt Area**
 - A floating input area at the bottom of the screen, similar to ChatGPT's UI.
 - Includes an input field and a submit button.
 - Fully responsive:
   - Stacks input and button vertically on smaller screens.
-  - Smooth animations and modern design.
+  - Dynamically adjusts position to avoid being covered by the sidebar.
 
 ---
 
 ## Technologies Used
 
 - **React**: For building the user interface.
-- **CSS**: For styling components with a focus on responsiveness and modern design.
-- **Bootstrap**: For layout and utility classes to enhance responsiveness.
-- **Font Awesome**: For icons used in the content area.
+- **Material-UI (MUI)**: For styling components and using modern icons.
+- **CSS**: For additional custom styling and responsiveness.
 
 ---
 
@@ -49,28 +49,29 @@ This project is a modern and responsive frontend for the Prisma application. It 
 - **`PromptArea.jsx`**: Provides a floating input area for user interaction.
 
 ### Styles
-- **`Sidebar.css`**: Styles for the sidebar, including responsiveness.
-- **`ContentArea.css`**: Styles for the content area, including typography and layout.
-- **`PromptArea.css`**: Styles for the floating prompt area, including animations and responsiveness.
+- **Material-UI (MUI)**: Used for styling and responsiveness.
+- **Custom CSS**: Used for additional styling and layout adjustments.
 
 ---
 
 ## Responsive Design
 
 ### General Approach
-- Used `flexbox` for layout alignment and spacing.
-- Added media queries to adjust styles for smaller screens.
+- Used Material-UI's `Box`, `Container`, and `Typography` components for layout and styling.
+- Added responsive properties like `flexDirection`, `padding`, and `fontSize` to adjust styles for smaller screens.
 - Ensured all components are usable and visually appealing on devices of all sizes.
 
 ### Specific Adjustments
 - **Sidebar**:
-  - Horizontal layout on smaller screens.
-  - Compact width when closed.
+  - Dynamically adjusts width and layout based on the open/close state.
+  - Compact width when closed to maximize screen space.
 - **Content Area**:
-  - Centered content with a maximum width for readability.
-  - Adjusted font sizes and spacing for smaller screens.
+  - Centers content with a maximum width for readability.
+  - Adjusts font sizes, spacing, and layout for smaller screens.
+  - Dynamically adjusts margin to avoid being overlapped by the sidebar.
 - **Prompt Area**:
   - Floating at the bottom of the screen.
+  - Dynamically adjusts position to avoid being covered by the sidebar.
   - Stacks input and button vertically on smaller screens.
 
 ---
@@ -93,7 +94,7 @@ This project is a modern and responsive frontend for the Prisma application. It 
    ```bash
    npm start
    ```
-5. Open the application in your browser at `http://localhost:3000`.
+5. Open the application in your browser at `http://localhost:5173`.
 
 ---
 
@@ -102,6 +103,7 @@ This project is a modern and responsive frontend for the Prisma application. It 
 - Add more navigation options to the sidebar.
 - Integrate backend APIs for dynamic content.
 - Enhance accessibility for better usability.
+- Add animations for smoother transitions.
 
 ---
 
