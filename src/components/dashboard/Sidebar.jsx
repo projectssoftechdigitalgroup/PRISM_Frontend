@@ -20,6 +20,8 @@ import { FaRegUser, FaUser } from "react-icons/fa";
 import { MdRecommend } from "react-icons/md";
 import CategoryCard from './recommendations/CategoryCards';
 import Profile from './profile/Profile';
+import { CiLogout } from 'react-icons/ci';
+import { useNavigate } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -28,7 +30,7 @@ function SideBar(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [isClosing, setIsClosing] = React.useState(false);
   const [activeTab, setActiveTab] = React.useState('Profile');
-
+const navigate=useNavigate()
   const handleDrawerClose = () => {
     setIsClosing(true);
     setMobileOpen(false);
@@ -89,8 +91,9 @@ function SideBar(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" noWrap component="div">
-             Abdullah
+          <Typography variant="h6" noWrap component="div" className='absolute position-right right-16 flex gap-2 cursor-pointer' onClick={()=>navigate('/')}>
+            <CiLogout className='mt-2'/>
+          Logout
           </Typography>
         </Toolbar>
       </AppBar>

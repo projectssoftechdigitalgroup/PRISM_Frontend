@@ -45,35 +45,35 @@ const Interview = ({ title }) => {
       } else {
         setProgress(100);
       }
-    }, 1000);  
+    }, 3500);  
   }
 
   return (
-    <div className="relative min-h-screen pb-24 px-4">
+    <div className="relative min-h-screen pb-24 px-4 overflow-x-hidden">
       <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text text-transparent mb-6">
         Interview For Category: {title}
       </p>
 
       <Progress progress={progress} />
 
-      <div className="mt-6 space-y-4 w-96 lg:w-[800px]">
-        {qaPairs.map((item, index) => (
-          <div
-            key={index}
-            className={`px-4 py-3 rounded-lg ${item.type === 'question'
-              ? 'bg-gray-100 text-black self-start'
-              : 'bg-purple-100 text-black self-end ml-[50%]'
-              } w-fit max-w-[90%]`}
-          >
-            {item.content}
-          </div>
-        ))}
-        {showLoader && (
-          <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 rounded-lg w-fit">
-            <PulseLoader size={8} color="#7e22ce" />
-          </div>
-        )}
+      <div className="mt-6 space-y-4 w-full max-w-4xl">
+  {qaPairs.map((item, index) => (
+    <div
+      key={index}
+      className={`flex ${item.type === 'question' ? 'justify-start' : 'justify-end'}`}
+    >
+      <div
+        className={`px-4 py-3 rounded-lg break-words whitespace-pre-wrap ${
+          item.type === 'question'
+            ? 'bg-gray-100 text-black'
+            : 'bg-purple-100 text-black'
+        } w-fit max-w-[80%]`}
+      >
+        {item.content}
       </div>
+    </div>
+  ))}
+</div>
 
       <div className="fixed bottom-4 right-0 w-[70%] flex items-end gap-2 z-50">
         <textarea
