@@ -32,7 +32,7 @@ function CategoryCard() {
     {!selectedCard ?
     <>
         <p
-        className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text text-transparent mb-10"
+        className="text-lg md:text-2xl mt-2.5 font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text text-transparent mb-10"
         >
     Choose the Category to proceed for interview
   </p>
