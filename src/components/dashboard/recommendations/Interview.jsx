@@ -49,14 +49,14 @@ const Interview = ({ title }) => {
   }
 
   return (
-    <div className="relative min-h-screen pb-24 px-4 overflow-x-hidden">
+    <div className="relative min-h-screen pb-24 px-4 sm:px-8 overflow-x-hidden">
       <p className="text-2xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 bg-clip-text text-transparent mb-6">
         Interview For Category: {title}
       </p>
 
       <Progress progress={progress} />
 
-      <div className="mt-6 space-y-4 w-full max-w-4xl">
+      <div className="mt-6 space-y-4 w-full max-w-4xl px-2 sm:px-0">
   {qaPairs.map((item, index) => (
     <div
       key={index}
@@ -67,12 +67,17 @@ const Interview = ({ title }) => {
           item.type === 'question'
             ? 'bg-gray-100 text-black'
             : 'bg-purple-100 text-black'
-        } w-fit max-w-[80%]`}
+        } w-fit max-w-[90%] sm:max-w-[80%]`}
       >
-        {item.content}
+     {item.content}
       </div>
     </div>
   ))}
+   {showLoader && (
+          <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 rounded-lg w-fit">
+            <PulseLoader size={8} color="#7e22ce" />
+          </div>
+        )}
 </div>
 
       <div className="fixed bottom-4 right-0 w-[70%] flex items-end gap-2 z-50">
