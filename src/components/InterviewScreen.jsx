@@ -270,12 +270,16 @@ export default function InterviewScreen() {
             flexGrow: 1,
             p: 3,
             color: theme.palette.text.primary,
-            // height: "450vh", // Increase the height of the main content
+            filter: open ? "blur(4px)" : "none", // Apply blur when sidebar is open
+            transition: "filter 0.3s ease", // Smooth transition for blur effect
+            "@media (min-width: 600px)": {
+              filter: "none", // Disable blur for larger screens
+            },
           }}
         >
           {/* <DrawerHeader /> */}
           <ContentArea theme={theme} />
-          <PromptArea  theme={theme} />
+          <PromptArea theme={theme} />
         </Box>
       </Box>
     </ThemeProvider>

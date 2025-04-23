@@ -56,6 +56,11 @@ const PromptArea = ({ theme }) => {
               color: "#fff",
               cursor: "pointer",
               transition: "background-color 0.3s ease",
+              fontSize: "1rem",
+              "@media (max-width: 600px)": {
+                padding: "8px 10px", // Adjust padding for smaller screens
+                fontSize: "0.9rem", // Adjust font size for smaller screens
+              },
             }}
           >
             <SendIcon />
