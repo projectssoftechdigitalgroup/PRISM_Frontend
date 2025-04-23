@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { styled, useTheme, ThemeProvider, createTheme } from "@mui/material/styles";
+import {
+  styled,
+  useTheme,
+  ThemeProvider,
+  createTheme,
+} from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import MuiDrawer from "@mui/material/Drawer";
 import MuiAppBar from "@mui/material/AppBar";
@@ -22,6 +27,7 @@ import Brightness4Icon from "@mui/icons-material/Brightness4";
 import Brightness7Icon from "@mui/icons-material/Brightness7";
 import logo from "../assets/prism-logo.png"; // Add your logo here
 import ContentArea from "./ContentArea";
+import PromptArea from "./PromptArea";
 
 const drawerWidth = 240;
 
@@ -44,10 +50,8 @@ const closedMixin = (theme) => ({
     duration: theme.transitions.duration.leavingScreen,
   }),
   overflowX: "hidden",
-  width: `calc(${theme.spacing(7)} + 1px)`,
-  [theme.breakpoints.up("sm")]: {
-    width: `calc(${theme.spacing(8)} + 1px)`,
-  },
+  width: 0, // Completely close the sidebar
+  overflow: "hidden", // Ensure no scrollbars
 });
 
 const DrawerHeader = styled("div")(({ theme }) => ({
@@ -126,7 +130,14 @@ export default function InterviewScreen() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Box sx={{ display: "flex", backgroundColor: theme.palette.background.default, minHeight: "100vh" }}>
+      <Box
+        sx={{
+          display: "flex",
+          backgroundColor: theme.palette.background.default,
+          minHeight: "100vh",
+          // overflowY: "auto", // Enable vertical scrolling
+        }}
+      >
         <CssBaseline />
         <AppBar position="fixed" open={open}>
           <Toolbar>
@@ -253,9 +264,18 @@ export default function InterviewScreen() {
             </ListItem>
           </List>
         </Drawer>
-        <Box component="main" sx={{ flexGrow: 1, p: 3, color: theme.palette.text.primary }}>
-          <DrawerHeader />
+        <Box
+          component="main"
+          sx={{
+            flexGrow: 1,
+            p: 3,
+            color: theme.palette.text.primary,
+            // height: "450vh", // Increase the height of the main content
+          }}
+        >
+          {/* <DrawerHeader /> */}
           <ContentArea theme={theme} />
+          <PromptArea  theme={theme} />
         </Box>
       </Box>
     </ThemeProvider>
