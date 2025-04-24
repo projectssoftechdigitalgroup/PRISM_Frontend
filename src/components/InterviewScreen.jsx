@@ -28,8 +28,32 @@ import Brightness7Icon from "@mui/icons-material/Brightness7";
 import logo from "../assets/prism-logo.png"; // Add your logo here
 import ContentArea from "./ContentArea";
 import PromptArea from "./PromptArea";
-
+import HistoryIcon from "@mui/icons-material/History";
+import { Route, Routes, useNavigate } from "react-router-dom";
+import History from "./History";
+import Recommendation from "./Recommendation";
 const drawerWidth = 240;
+
+const routes = [
+  {
+    name: "Recommendation",
+    path: "/recommendation",
+    element: <Recommendation />,
+    icon: <StarIcon />,
+  },
+  {
+    name: "Profile",
+    path: "/profile",
+    element: <ContentArea />,
+    icon: <PersonIcon />,
+  },
+  {
+    name: "History",
+    path: "/history",
+    element: <History />,
+    icon: <HistoryIcon />,
+  },
+];
 
 const openedMixin = (theme) => ({
   width: drawerWidth,
@@ -101,6 +125,11 @@ const Drawer = styled(MuiDrawer, {
 export default function InterviewScreen() {
   const [open, setOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+
+  const navigate = useNavigate();
+  const navigateHandler = (path) => {
+    navigate(path);
+  };
 
   const theme = createTheme({
     palette: {
@@ -200,68 +229,44 @@ export default function InterviewScreen() {
           </Box>
           <Divider />
           <List>
-            <ListItem disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                  backgroundColor: "#E041B1",
-                  color: "#fff",
-                  borderRadius: "8px",
-                  margin: "10px",
-                  "&:hover": {
-                    backgroundColor: "#c0359b",
-                  },
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                    color: "#fff",
-                  }}
-                >
-                  <StarIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Recommendation"
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
-            <ListItem disablePadding sx={{ display: "block" }}>
-              <ListItemButton
-                sx={{
-                  minHeight: 48,
-                  justifyContent: open ? "initial" : "center",
-                  px: 2.5,
-                  backgroundColor: "#E041B1",
-                  color: "#fff",
-                  borderRadius: "8px",
-                  margin: "10px",
-                  "&:hover": {
-                    backgroundColor: "#c0359b",
-                  },
-                }}
-              >
-                <ListItemIcon
-                  sx={{
-                    minWidth: 0,
-                    mr: open ? 3 : "auto",
-                    justifyContent: "center",
-                    color: "#fff",
-                  }}
-                >
-                  <PersonIcon />
-                </ListItemIcon>
-                <ListItemText
-                  primary="Profile"
-                  sx={{ opacity: open ? 1 : 0 }}
-                />
-              </ListItemButton>
-            </ListItem>
+            {routes.map((route, index) => {
+              return (
+                <>
+                  <ListItem disablePadding sx={{ display: "block" }}>
+                    <ListItemButton
+                      onClick={() => navigateHandler(route.path)}
+                      sx={{
+                        minHeight: 48,
+                        justifyContent: open ? "initial" : "center",
+                        px: 2.5,
+                        backgroundColor: "#E041B1",
+                        color: "#fff",
+                        borderRadius: "8px",
+                        margin: "10px",
+                        "&:hover": {
+                          backgroundColor: "#c0359b",
+                        },
+                      }}
+                    >
+                      <ListItemIcon
+                        sx={{
+                          minWidth: 0,
+                          mr: open ? 3 : "auto",
+                          justifyContent: "center",
+                          color: "#fff",
+                        }}
+                      >
+                        {route.icon}
+                      </ListItemIcon>
+                      <ListItemText
+                        primary={route.name}
+                        sx={{ opacity: open ? 1 : 0 }}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                </>
+              );
+            })}
           </List>
         </Drawer>
         <Box
@@ -278,8 +283,17 @@ export default function InterviewScreen() {
           }}
         >
           {/* <DrawerHeader /> */}
-          <ContentArea theme={theme} />
-          <PromptArea theme={theme} />
+          <Routes>
+            {routes.map((route, index) => {
+              return (
+                <>
+                  <Route path={"recommendation"} element={<Recommendation/>} />
+                  <Route path={"profile"} element={<ContentArea/>} />
+                  <Route path={"history"} element={<History/>} />
+                </>
+              );
+            })}
+          </Routes>
         </Box>
       </Box>
     </ThemeProvider>
