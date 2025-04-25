@@ -22,7 +22,7 @@ const [screen, setScreen] = useState(true)
 
 
     </>
-:<RHistory/>
+:<RHistory onBack={() => setScreen(true)}/>
   
     )
     }
