@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from 'react';
-import interviewQuestions from '../data/questions'
-import Progress from './Progress';
-import { PulseLoader } from 'react-spinners';
+import React, { useEffect, useRef, useState } from "react";
+import interviewQuestions from "../data/questions";
+import Progress from "./Progress";
+import { PulseLoader } from "react-spinners";
 
 const Interview = () => {
-  const [text, setText] = useState('');
-  const [qaPairs, setQaPairs] = useState([]); 
+  const [text, setText] = useState("");
+  const [qaPairs, setQaPairs] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [showLoader, setShowLoader] = useState(false);
   const [progress, setProgress] = useState(0);
@@ -16,37 +16,55 @@ const Interview = () => {
   useEffect(() => {
     const textarea = textareaRef.current;
     if (textarea) {
-      textarea.style.height = 'auto';
-      textarea.style.height = textarea.scrollHeight + 'px';
+      textarea.style.height = "auto";
+      textarea.style.height = textarea.scrollHeight + "px";
     }
   }, [text]);
 
   useEffect(() => {
-    if (questions.length && currentIndex === 0 && qaPairs.length === 0) {
-      setQaPairs([{ type: 'question', content: questions[0].question }]);
+    const savedQaPairs = JSON.parse(localStorage.getItem("qaPairs")) || [];
+    const savedProgress = parseFloat(localStorage.getItem("progress")) || 0;
+    const savedCurrentIndex = parseInt(localStorage.getItem("currentIndex"), 10) || 0;
+
+    if (savedQaPairs.length > 0) {
+      setQaPairs(savedQaPairs);
+      setProgress(savedProgress);
+      setCurrentIndex(savedCurrentIndex);
+    } else if (qaPairs.length === 0 && questions.length > 0) {
+      // Only set the first question if no saved data exists and qaPairs is empty
+      setQaPairs((prev) => (prev.length === 0 ? [{ type: "question", content: questions[0].question }] : prev));
     }
-  }, [questions]);
+  }, []); // Ensure this runs only once on mount
+
+  useEffect(() => {
+    localStorage.setItem("qaPairs", JSON.stringify(qaPairs));
+    localStorage.setItem("progress", progress.toString());
+    localStorage.setItem("currentIndex", currentIndex.toString());
+  }, [qaPairs, progress, currentIndex]);
 
   const handleSend = () => {
     if (!text.trim() || showLoader) return;
 
     const answer = text.trim();
     const nextIndex = currentIndex + 1;
-    setQaPairs(prev => [...prev, { type: 'answer', content: answer }]);
-    setText('');
+    setQaPairs((prev) => [...prev, { type: "answer", content: answer }]);
+    setText("");
     setShowLoader(true);
 
     setTimeout(() => {
       setShowLoader(false);
       if (nextIndex < questions.length) {
-        setQaPairs(prev => [...prev, { type: 'question', content: questions[nextIndex].question }]);
+        setQaPairs((prev) => [
+          ...prev,
+          { type: "question", content: questions[nextIndex].question },
+        ]);
         setCurrentIndex(nextIndex);
-        setProgress(((nextIndex) / questions.length) * 100);
+        setProgress((nextIndex / questions.length) * 100);
       } else {
         setProgress(100);
       }
-    }, 3500);  
-  }
+    }, 3500);
+  };
 
   return (
     <div className="relative min-h-screen pb-24 px-4 sm:px-8 overflow-x-hidden">
@@ -57,30 +75,32 @@ const Interview = () => {
       <Progress progress={progress} />
 
       <div className="mt-6 space-y-4 w-full max-w-4xl px-2 sm:px-0">
-  {qaPairs.map((item, index) => (
-    <div
-      key={index}
-      className={`flex ${item.type === 'question' ? 'justify-start' : 'justify-end'}`}
-    >
-      <div
-        className={`px-4 py-3 rounded-lg break-words whitespace-pre-wrap ${
-          item.type === 'question'
-            ? 'bg-gray-100 text-black'
-            : 'bg-purple-100 text-black'
-        } w-fit max-w-[90%] sm:max-w-[80%]`}
-      >
-     {item.content}
-      </div>
-    </div>
-  ))}
-   {showLoader && (
+        {qaPairs.map((item, index) => (
+          <div
+            key={index}
+            className={`flex ${
+              item.type === "question" ? "justify-start" : "justify-end"
+            }`}
+          >
+            <div
+              className={`px-4 py-3 rounded-lg break-words whitespace-pre-wrap ${
+                item.type === "question"
+                  ? "bg-gray-100 text-black"
+                  : "bg-purple-100 text-black"
+              } w-fit max-w-[90%] sm:max-w-[80%]`}
+            >
+              {item.content}
+            </div>
+          </div>
+        ))}
+        {showLoader && (
           <div className="flex items-center gap-2 px-4 py-3 bg-gray-100 rounded-lg w-fit">
             <PulseLoader size={8} color="#7e22ce" />
           </div>
         )}
-</div>
+      </div>
 
-      <div className="fixed bottom-4 right-0 w-[70%] flex items-end gap-2 z-50">
+      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[70%] flex items-end gap-2 z-50">
         <textarea
           ref={textareaRef}
           rows={1}

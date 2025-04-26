@@ -8,10 +8,7 @@ const Recommendations = () => {
 
   return screen ? (
     <>
-      
       <CategoryCard />
-
-      
       <div className="flex items-center justify-center mt-10">
         <button
           style={{ backgroundColor: "#8200DB" }}

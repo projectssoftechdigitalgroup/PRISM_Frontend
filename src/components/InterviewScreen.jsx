@@ -231,39 +231,38 @@ export default function InterviewScreen() {
           <List>
             {routes.map((route, index) => {
               return (
-                
-                  <ListItem key={index} disablePadding sx={{ display: "block" }}>
-                    <ListItemButton
-                      onClick={() => navigateHandler(route.path)}
+                <ListItem key={index} disablePadding sx={{ display: "block" }}>
+                  <ListItemButton
+                    onClick={() => navigateHandler(route.path)}
+                    sx={{
+                      minHeight: 48,
+                      justifyContent: open ? "initial" : "center",
+                      px: 2.5,
+                      backgroundColor: "#8200DB",
+                      color: "#fff",
+                      borderRadius: "8px",
+                      margin: "10px",
+                      "&:hover": {
+                        backgroundColor: "#c0359b",
+                      },
+                    }}
+                  >
+                    <ListItemIcon
                       sx={{
-                        minHeight: 48,
-                        justifyContent: open ? "initial" : "center",
-                        px: 2.5,
-                        backgroundColor: "#8200DB",
+                        minWidth: 0,
+                        mr: open ? 3 : "auto",
+                        justifyContent: "center",
                         color: "#fff",
-                        borderRadius: "8px",
-                        margin: "10px",
-                        "&:hover": {
-                          backgroundColor: "#c0359b",
-                        },
                       }}
                     >
-                      <ListItemIcon
-                        sx={{
-                          minWidth: 0,
-                          mr: open ? 3 : "auto",
-                          justifyContent: "center",
-                          color: "#fff",
-                        }}
-                      >
-                        {route.icon}
-                      </ListItemIcon>
-                      <ListItemText
-                        primary={route.name}
-                        sx={{ opacity: open ? 1 : 0 }}
-                      />
-                    </ListItemButton>
-                  </ListItem>
+                      {route.icon}
+                    </ListItemIcon>
+                    <ListItemText
+                      primary={route.name}
+                      sx={{ opacity: open ? 1 : 0 }}
+                    />
+                  </ListItemButton>
+                </ListItem>
               );
             })}
           </List>
@@ -284,13 +283,13 @@ export default function InterviewScreen() {
           {/* <DrawerHeader /> */}
           <Routes>
             {/* {routes.map((route, index) => { */}
-              {/* return ( */}
-                {/* <> */}
-                  <Route path={"recommendation"} element={<Recommendation/>} />
-                  <Route path={"profile"} element={<ContentArea/>} />
-                  <Route path={"history"} element={<RecommendationTab/>} />
-                {/* </> */}
-              {/* ); */}
+            {/* return ( */}
+            {/* <> */}
+            <Route path={"recommendation"} element={<Recommendation />} />
+            <Route path={"profile"} element={<ContentArea />} />
+            <Route path={"history"} element={<History />} />
+            {/* </> */}
+            {/* ); */}
             {/* })} */}
           </Routes>
         </Box>

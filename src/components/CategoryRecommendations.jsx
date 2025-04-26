@@ -36,22 +36,6 @@ const CategoryRecommendations = ({ title, image, onBack }) => {
           </p>
         </div>
       </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {[1, 2, 3, 4].map((num) => (
-          <div 
-            key={num} 
-            className="p-6 bg-white rounded-lg shadow-md hover:shadow-lg transition"
-          >
-            <h3 className="text-lg font-semibold mb-2 text-purple-800">
-              Recommendation {num}
-            </h3>
-            <p className="text-purple-600">
-              Short description about recommendation {num}.
-            </p>
-          </div>
-        ))}
-      </div>
     </div>
   );
 };
