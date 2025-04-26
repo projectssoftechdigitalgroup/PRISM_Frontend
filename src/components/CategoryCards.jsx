@@ -10,7 +10,7 @@ import { useState } from 'react';
 const cards = [
   {
     id: 1,
-    title: 'Hotels',
+    title: 'Food & Dining',
     image:'/restaurant.jpeg'
   },
   {
@@ -59,7 +59,7 @@ function CategoryCard() {
           height: '200px',
           overflow: 'hidden',
           boxShadow: '0px 4px 20px rgba(0,0,0,0.1)',
-        }}>
+        }} >
           <CardActionArea
           onClick= {() =>setSelectedCard(card)}>
             <CardMedia
@@ -69,7 +69,7 @@ function CategoryCard() {
           
         />
             <CardContent sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-              <Typography variant="h5" component="div">
+              <Typography variant="h6" component="div">
                 {card.title}
               </Typography>
             </CardContent>
