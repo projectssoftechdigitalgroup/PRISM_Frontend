@@ -111,7 +111,7 @@ const ContentArea = () => {
                 padding: "10px 15px",
                 borderRadius: "5px",
                 border: "none",
-                backgroundColor: "#E041B1",
+                backgroundColor: "#8200DB",
                 color: "#fff",
                 cursor: "pointer",
                 transition: "background-color 0.3s ease",
