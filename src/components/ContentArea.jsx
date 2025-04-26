@@ -26,9 +26,19 @@ const ContentArea = () => {
           maxWidth: "800px",
           margin: "0 auto",
           padding: "20px",
+          marginTop: "100px",
         }}
       >
-        <h1 style={{ color: "#E041B1", fontSize: "4rem" }}>Prism</h1>
+        <h1
+          style={{
+            color: "#E041B1",
+            fontSize: "4rem",
+            marginBottom: "60px",
+            fontWeight: "bold",
+          }}
+        >
+          Prism
+        </h1>
         <p style={{ fontSize: "1.2rem", marginTop: "-30px" }}>
           Create your digital twin and get personalized recommendations
         </p>
@@ -37,7 +47,8 @@ const ContentArea = () => {
           <span style={{ marginTop: "-10px" }}>
             <i
               style={{
-                backgroundColor: "#FFBD45",
+                backgroundColor: "#8200DB",
+                color: "#fff",
                 padding: "10px",
                 borderRadius: "10px",
               }}

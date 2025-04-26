@@ -32,15 +32,10 @@ import HistoryIcon from "@mui/icons-material/History";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import History from "./History";
 import Recommendation from "./Recommendation";
+import RecommendationTab from "./RecommendationTab";
 const drawerWidth = 240;
 
 const routes = [
-  {
-    name: "Recommendation",
-    path: "/recommendation",
-    element: <Recommendation />,
-    icon: <StarIcon />,
-  },
   {
     name: "Profile",
     path: "/profile",
@@ -48,9 +43,15 @@ const routes = [
     icon: <PersonIcon />,
   },
   {
+    name: "Recommendation",
+    path: "/recommendation",
+    element: <Recommendation />,
+    icon: <StarIcon />,
+  },
+  {
     name: "History",
     path: "/history",
-    element: <History />,
+    element: <RecommendationTab />,
     icon: <HistoryIcon />,
   },
 ];
@@ -164,12 +165,11 @@ export default function InterviewScreen() {
           display: "flex",
           backgroundColor: theme.palette.background.default,
           minHeight: "100vh",
-          // overflowY: "auto", // Enable vertical scrolling
         }}
       >
         <CssBaseline />
         <AppBar position="fixed" open={open}>
-          <Toolbar>
+          <Toolbar sx={{ backgroundColor: "#8200DB" }}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
@@ -231,15 +231,15 @@ export default function InterviewScreen() {
           <List>
             {routes.map((route, index) => {
               return (
-                <>
-                  <ListItem disablePadding sx={{ display: "block" }}>
+                
+                  <ListItem key={index} disablePadding sx={{ display: "block" }}>
                     <ListItemButton
                       onClick={() => navigateHandler(route.path)}
                       sx={{
                         minHeight: 48,
                         justifyContent: open ? "initial" : "center",
                         px: 2.5,
-                        backgroundColor: "#E041B1",
+                        backgroundColor: "#8200DB",
                         color: "#fff",
                         borderRadius: "8px",
                         margin: "10px",
@@ -264,7 +264,6 @@ export default function InterviewScreen() {
                       />
                     </ListItemButton>
                   </ListItem>
-                </>
               );
             })}
           </List>
@@ -284,15 +283,15 @@ export default function InterviewScreen() {
         >
           {/* <DrawerHeader /> */}
           <Routes>
-            {routes.map((route, index) => {
-              return (
-                <>
+            {/* {routes.map((route, index) => { */}
+              {/* return ( */}
+                {/* <> */}
                   <Route path={"recommendation"} element={<Recommendation/>} />
                   <Route path={"profile"} element={<ContentArea/>} />
-                  <Route path={"history"} element={<History/>} />
-                </>
-              );
-            })}
+                  <Route path={"history"} element={<RecommendationTab/>} />
+                {/* </> */}
+              {/* ); */}
+            {/* })} */}
           </Routes>
         </Box>
       </Box>
