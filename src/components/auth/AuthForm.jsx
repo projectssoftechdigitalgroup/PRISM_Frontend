@@ -31,7 +31,7 @@ const AuthForm = () => {
     if (email === 'user@prism.com' && password === 'User@123') {
       alert('Login successful')
       setIsLogin(true)
-      navigate('/dashboard')
+      navigate('/profile')
     } else {
       alert('Invalid email or password')
     }
