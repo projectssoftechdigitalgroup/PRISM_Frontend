@@ -180,6 +180,9 @@ function EnhancedTableToolbar({ searchQuery, onSearchChange }) {
               backgroundColor: "#6A00B8", // Darken color on hover
             },
             width: { xs: "100%", sm: "auto" },
+            overflow: "hidden", // Prevent scrollbars
+            textOverflow: "ellipsis", // Handle text overflow gracefully
+            whiteSpace: "nowrap", // Prevent text wrapping
           }}
           // startIcon={<SearchIcon />}
           onClick={() => onSearchChange(searchQuery)}
