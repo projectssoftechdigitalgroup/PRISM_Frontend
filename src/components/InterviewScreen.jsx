@@ -29,7 +29,7 @@ import logo from "../assets/prism-logo.png"; // Add your logo here
 import ContentArea from "./ContentArea";
 import PromptArea from "./PromptArea";
 import HistoryIcon from "@mui/icons-material/History";
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import History from "./History";
 import Recommendation from "./Recommendation";
 import RecommendationTab from "./RecommendationTab";
@@ -126,10 +126,16 @@ const Drawer = styled(MuiDrawer, {
 export default function InterviewScreen() {
   const [open, setOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const location = useLocation(); // Get the current route location
 
   const navigate = useNavigate();
   const navigateHandler = (path) => {
     navigate(path);
+  };
+
+  const getTitle = () => {
+    const currentRoute = routes.find((route) => route.path === location.pathname);
+    return currentRoute ? currentRoute.name : "Interview Screen";
   };
 
   const theme = createTheme({
@@ -183,7 +189,7 @@ export default function InterviewScreen() {
               <MenuIcon />
             </IconButton>
             <Typography variant="h6" noWrap component="div">
-              Interview Screen
+              {getTitle()} {/* Dynamically set the title */}
             </Typography>
             <IconButton
               color="inherit"
