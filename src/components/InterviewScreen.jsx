@@ -33,6 +33,10 @@ import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import History from "./History";
 import Recommendation from "./Recommendation";
 import RecommendationTab from "./RecommendationTab";
+import LogoutIcon from "@mui/icons-material/Logout"; // Import Logout icon
+import Modal from "@mui/material/Modal";
+import Button from "@mui/material/Button";
+import Interview from "./Interview";
 const drawerWidth = 240;
 
 const routes = [
@@ -126,6 +130,7 @@ const Drawer = styled(MuiDrawer, {
 export default function InterviewScreen() {
   const [open, setOpen] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+  const [logoutModalOpen, setLogoutModalOpen] = useState(false); // State for logout modal
   const location = useLocation(); // Get the current route location
 
   const navigate = useNavigate();
@@ -133,8 +138,23 @@ export default function InterviewScreen() {
     navigate(path);
   };
 
+  const handleLogout = () => {
+    setLogoutModalOpen(false); // Close the modal
+    navigate("/"); // Navigate to the home page
+  };
+
+  const handleLogoutModalOpen = () => {
+    setLogoutModalOpen(true); // Open the modal
+  };
+
+  const handleLogoutModalClose = () => {
+    setLogoutModalOpen(false); // Close the modal
+  };
+
   const getTitle = () => {
-    const currentRoute = routes.find((route) => route.path === location.pathname);
+    const currentRoute = routes.find(
+      (route) => route.path === location.pathname
+    );
     return currentRoute ? currentRoute.name : "Interview Screen";
   };
 
@@ -191,17 +211,82 @@ export default function InterviewScreen() {
             <Typography variant="h6" noWrap component="div">
               {getTitle()} {/* Dynamically set the title */}
             </Typography>
-            <IconButton
-              color="inherit"
-              aria-label="toggle dark mode"
-              onClick={toggleDarkMode}
-              edge="end"
-              sx={{ marginLeft: "auto" }}
+            <Box
+              sx={{
+                marginLeft: "auto",
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+              }}
             >
-              {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-            </IconButton>
+              <IconButton
+                color="inherit"
+                aria-label="toggle dark mode"
+                onClick={toggleDarkMode}
+              >
+                {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+              </IconButton>
+              <IconButton
+                color="inherit"
+                aria-label="logout"
+                onClick={handleLogoutModalOpen} // Open the logout confirmation modal
+              >
+                <LogoutIcon />
+              </IconButton>
+            </Box>
           </Toolbar>
         </AppBar>
+        {/* Logout Confirmation Modal */}
+        <Modal
+          open={logoutModalOpen}
+          onClose={handleLogoutModalClose}
+          aria-labelledby="logout-modal-title"
+          aria-describedby="logout-modal-description"
+        >
+          <Box
+            sx={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              width: "90%",
+              maxWidth: 400,
+              bgcolor: "background.paper",
+              boxShadow: 24,
+              p: 4,
+              borderRadius: 2,
+              textAlign: "center",
+            }}
+          >
+            <Typography
+              id="logout-modal-title"
+              variant="h6"
+              component="h2"
+              sx={{ mb: 2 }}
+            >
+              Are you sure you want to logout?
+            </Typography>
+            <Box
+              sx={{ display: "flex", justifyContent: "space-around", mt: 3 }}
+            >
+              <Button
+                variant="contained"
+                color="error"
+                onClick={handleLogout}
+                sx={{ px: 4 }}
+              >
+                Logout
+              </Button>
+              <Button
+                variant="outlined"
+                onClick={handleLogoutModalClose}
+                sx={{ px: 4 }}
+              >
+                Cancel
+              </Button>
+            </Box>
+          </Box>
+        </Modal>
         <Drawer variant="permanent" open={open}>
           <DrawerHeader>
             <IconButton
@@ -279,6 +364,8 @@ export default function InterviewScreen() {
             flexGrow: 1,
             p: 3,
             color: theme.palette.text.primary,
+            overflowY: "auto", // Enable vertical scrolling
+            maxHeight: "100vh", // Limit height to viewport
             filter: open ? "blur(4px)" : "none", // Apply blur when sidebar is open
             transition: "filter 0.3s ease", // Smooth transition for blur effect
             "@media (min-width: 600px)": {
