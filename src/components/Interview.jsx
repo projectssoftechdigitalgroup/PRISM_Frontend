@@ -100,7 +100,9 @@ const Interview = () => {
         )}
       </div>
 
-      <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 w-[70%] flex items-end gap-2 z-50">
+      <div
+        className="mt-50 w-[90%] sm:w-[70%] md:w-[50%] mx-auto flex items-end gap-2"
+      >
         <textarea
           ref={textareaRef}
           rows={1}
