@@ -33,10 +33,6 @@ import { Route, Routes, useNavigate, useLocation } from "react-router-dom";
 import History from "./History";
 import Recommendation from "./Recommendation";
 import RecommendationTab from "./RecommendationTab";
-import LogoutIcon from "@mui/icons-material/Logout"; // Import Logout icon
-import Modal from "@mui/material/Modal";
-import Button from "@mui/material/Button";
-import Interview from "./Interview";
 const drawerWidth = 240;
 
 const routes = [
@@ -211,82 +207,17 @@ export default function InterviewScreen() {
             <Typography variant="h6" noWrap component="div">
               {getTitle()} {/* Dynamically set the title */}
             </Typography>
-            <Box
-              sx={{
-                marginLeft: "auto",
-                display: "flex",
-                alignItems: "center",
-                gap: 2,
-              }}
+            <IconButton
+              color="inherit"
+              aria-label="toggle dark mode"
+              onClick={toggleDarkMode}
+              edge="end"
+              sx={{ marginLeft: "auto" }}
             >
-              <IconButton
-                color="inherit"
-                aria-label="toggle dark mode"
-                onClick={toggleDarkMode}
-              >
-                {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
-              </IconButton>
-              <IconButton
-                color="inherit"
-                aria-label="logout"
-                onClick={handleLogoutModalOpen} // Open the logout confirmation modal
-              >
-                <LogoutIcon />
-              </IconButton>
-            </Box>
+              {darkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+            </IconButton>
           </Toolbar>
         </AppBar>
-        {/* Logout Confirmation Modal */}
-        <Modal
-          open={logoutModalOpen}
-          onClose={handleLogoutModalClose}
-          aria-labelledby="logout-modal-title"
-          aria-describedby="logout-modal-description"
-        >
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: "90%",
-              maxWidth: 400,
-              bgcolor: "background.paper",
-              boxShadow: 24,
-              p: 4,
-              borderRadius: 2,
-              textAlign: "center",
-            }}
-          >
-            <Typography
-              id="logout-modal-title"
-              variant="h6"
-              component="h2"
-              sx={{ mb: 2 }}
-            >
-              Are you sure you want to logout?
-            </Typography>
-            <Box
-              sx={{ display: "flex", justifyContent: "space-around", mt: 3 }}
-            >
-              <Button
-                variant="contained"
-                color="error"
-                onClick={handleLogout}
-                sx={{ px: 4 }}
-              >
-                Logout
-              </Button>
-              <Button
-                variant="outlined"
-                onClick={handleLogoutModalClose}
-                sx={{ px: 4 }}
-              >
-                Cancel
-              </Button>
-            </Box>
-          </Box>
-        </Modal>
         <Drawer variant="permanent" open={open}>
           <DrawerHeader>
             <IconButton
