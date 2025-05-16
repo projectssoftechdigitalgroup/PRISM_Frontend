@@ -11,7 +11,6 @@ import {
   ChatGPTMenuIcon,
   ChatGPTPlusIcon,
   CheckIcon,
-  MenuIcon,
   TemporaryChatIcon,
 } from './icons/other-icons';
 import { Switch } from './components/ui/switch';
