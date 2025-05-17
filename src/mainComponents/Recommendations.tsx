@@ -96,6 +96,7 @@ const Recommendations = () => {
             <div
               key={movie.title}
               style={{
+            marginTop: "30px",
                 width: "450px", // Ensure card takes full width of its grid cell
                 borderRadius: "12px",
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
