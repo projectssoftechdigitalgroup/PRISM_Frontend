@@ -13,6 +13,9 @@ import {
 } from "./icons/sidebar-icons";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
+import RecommendationIcon from "../src/assets/icons/recommend 1.png"
+import ProfileIcon from "../src/assets/icons/profile.png"
+
 
 // import { useSidebarContext } from "./sidebar-context";
 
@@ -97,18 +100,10 @@ export function Sidebar() {
             onClick={() => navigate("/recommendations")}
           >
             <Flex align="center" gap="2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="#000000"
-                viewBox="0 0 24 24"
-                width="20"
-                height="20"
-              >
-                <path d="M2 21h4V9H2v12zM22 10c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32a1 1 0 00-.29-.7L13 2 7.59 7.41A2 2 0 007 8.83V19a2 2 0 002 2h8c.82 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73V10z" />
-              </svg>
+              <img width={"50px"} height={"50px"} src={RecommendationIcon} alt="not found" />
               <Text
                 style={{ color: "black" }}
-                fontSize="sm"
+                fontSize="15px"
                 fontWeight="medium"
               >
                 Recommendations
@@ -128,24 +123,12 @@ export function Sidebar() {
             w="100%"
             whiteSpace="nowrap"
           >
-            <NavLink to="#" style={{ textDecoration: "none", width: "100%" }}>
+            <NavLink to="/" style={{ textDecoration: "none", width: "100%" }}>
               <Flex align="center" gap="2">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 64 64"
-                  width="20"
-                  height="20"
-                >
-                  <circle cx="32" cy="16" r="12" fill="#90CAF9" />
-                  <path
-                    d="M16 58v-6a10 10 0 0110-10h12a10 10 0 0110 10v6H16z"
-                    fill="#1976D2"
-                  />
-                  <path d="M28 36h8l2 6h-12l2-6z" fill="#BBDEFB" />
-                </svg>
+                <img width={"50px"} height={"50px"} src={ProfileIcon} alt="not found" />
                 <Text
                   style={{ color: "black" }}
-                  fontSize="sm"
+                  fontSize="15px"
                   fontWeight="medium"
                 >
                   Profile
@@ -173,8 +156,8 @@ export function Sidebar() {
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
-                  width="20"
-                  height="20"
+                  width="50px"
+                  height="50px"
                 >
                   <path
                     fill="#673AB7"
@@ -183,7 +166,7 @@ export function Sidebar() {
                 </svg>
                 <Text
                   style={{ color: "black" }}
-                  fontSize="sm"
+                  fontSize="15px"
                   fontWeight="medium"
                 >
                   History

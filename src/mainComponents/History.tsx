@@ -127,7 +127,8 @@ export function History() {
       {/* Prompt Section */}
       <div
         style={{
-          textAlign: "center",
+          textAlign: "right",
+          marginRight: "100px",
           marginBottom: "24px",
           fontSize: "16px",
           color: "#606060",
@@ -172,8 +173,9 @@ export function History() {
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "20px",
+          gap: "30px",
           justifyContent: "center",
+          padding: "0 100px", // Add space from left and right
         }}
       >
         {movies.map((movie) => (
@@ -210,8 +212,17 @@ export function History() {
                 padding: "8px",
                 cursor: "pointer",
                 boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+                transition: "transform 0.2s, background-color 0.2s", // Add transition for hover effect
               }}
               title={bookmarkedMovies.some((m: any) => m.title === movie.title) ? "Bookmarked" : "Bookmark"}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.backgroundColor = "gary"; // Change background color on hover
+                e.currentTarget.style.transform = "scale(1.1)"; // Slightly scale up on hover
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.backgroundColor = "white"; // Revert background color
+                e.currentTarget.style.transform = "scale(1)"; // Revert scale
+              }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

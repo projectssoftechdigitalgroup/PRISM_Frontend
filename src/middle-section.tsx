@@ -31,7 +31,7 @@ export function MiddleSection() {
           alignItems: "center",
         }}
       >
-        <div style={{ textAlign: "center", maxWidth: "600px", width: "100%" }}>
+        <div style={{textAlign: "center", maxWidth: "600px", width: "100%" }}>
           <h1
             style={{
               fontSize: "70px",
@@ -57,7 +57,7 @@ export function MiddleSection() {
           textAlign: "left", // Align text to the left
         }}
       >
-        <div style={{ marginBottom: "16px" }}>
+        <div style={{ marginBottom: "20px" }}>
           <p style={{ fontSize: "16px", color: "black" }}>
             Let me know for which category you want recommendations:
           </p>

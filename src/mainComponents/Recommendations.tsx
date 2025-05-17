@@ -1,10 +1,12 @@
 import { useState } from "react";
-
+import food from "../assets/icons/food.png"
+import movie from "../assets/icons/film-reel-2.png"
+import travel from "../assets/icons/plane-1.png"
 const Recommendations = () => {
   const categories = [
-    { name: "Food & Dining", icon: "🍽️" },
-    { name: "Movies & TV", icon: "🎬", active: true },
-    { name: "Travelling", icon: "✈️" },
+    { name: "Food & Dining", icon: food },
+    { name: "Movies & TV", icon: movie, active: true },
+    { name: "Travelling", icon: travel },
   ];
 
   const [movies, setMovies] = useState(() => {
@@ -34,7 +36,7 @@ const Recommendations = () => {
         <div
           style={{
             display: "flex",
-            justifyContent: "center",
+            justifyContent: "flex-start", // Align items to the left
             gap: "40px",
             marginBottom: "30px",
           }}
@@ -47,12 +49,36 @@ const Recommendations = () => {
                 color: cat.active ? "#A020F0" : "#333",
                 fontWeight: cat.active ? "bold" : "normal",
                 cursor: "pointer",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
               }}
             >
-              <div style={{ fontSize: "30px" }}>{cat.icon}</div>
-              <div style={{ marginTop: "8px", fontSize: "14px" }}>
-                {cat.name}
+              <div
+                style={{
+                  width: "70px",
+                  height: "70px",
+                  borderRadius: "50%",
+                  background: "linear-gradient(185deg, #FF6767, #6A5ACD)", // Gradient border
+                  padding: "2px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <img
+                  src={cat.icon}
+                  alt={`${cat.name} Icon`}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: "50%", // Make the image round
+                    objectFit: "cover",
+                    backgroundColor: "#fff", // White background inside the border
+                  }}
+                />
               </div>
+              <div style={{ marginTop: "8px", fontSize: "14px" }}>{cat.name}</div>
             </div>
           ))}
         </div>
@@ -61,15 +87,16 @@ const Recommendations = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: "20px",
-            justifyContent: "center",
+            gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))", // Ensure cards are responsive
+            gap: "0px", // Decrease space between cards
+            justifyContent: "center", // Center the grid
           }}
         >
           {movies.map((movie: any) => (
             <div
               key={movie.title}
               style={{
+                width: "450px", // Ensure card takes full width of its grid cell
                 borderRadius: "12px",
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 overflow: "hidden",
@@ -82,7 +109,7 @@ const Recommendations = () => {
               <img
                 src={movie.image}
                 alt={movie.title}
-                style={{ height: "280px" }}
+                style={{ height: "300px",width: "100%"}}
               />
               <div
                 style={{
@@ -118,6 +145,7 @@ const Recommendations = () => {
               >
                 Bookmarked
               </div>
+              {/* Bookmark Icon */}
               <div
                 onClick={() => handleDelete(movie.title)}
                 style={{
@@ -129,6 +157,15 @@ const Recommendations = () => {
                   padding: "5px",
                   cursor: "pointer",
                   boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+                  transition: "transform 0.2s, background-color 0.2s", // Add transition for hover effect
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.backgroundColor = "#e041b1"; // Change background color on hover
+                  e.currentTarget.style.transform = "scale(1.1)"; // Slightly scale up on hover
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.backgroundColor = "white"; // Revert background color
+                  e.currentTarget.style.transform = "scale(1)"; // Revert scale
                 }}
                 title="Delete"
               >
