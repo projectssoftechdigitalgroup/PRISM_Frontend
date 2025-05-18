@@ -31,14 +31,21 @@ const Recommendations = () => {
 
   return (
     <>
-      <div style={{ fontFamily: "Arial, sans-serif", padding: "20px" }}>
+      <div
+        style={{
+          fontFamily: "Arial, sans-serif",
+          padding: "20px",
+          backgroundColor: "#FFFFFF", // Set background color to white
+        }}
+      >
         {/* Category Section */}
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-start", // Align items to the left
+            justifyContent: "flex-start",
             gap: "40px",
             marginBottom: "30px",
+            flexWrap: "wrap", // Allow wrapping for smaller screens
           }}
         >
           {categories.map((cat) => (
@@ -58,9 +65,11 @@ const Recommendations = () => {
                 style={{
                   width: "70px",
                   height: "70px",
-                  borderRadius: "50%",
-                  background: "linear-gradient(185deg, #FF6767, #6A5ACD)", // Gradient border
-                  padding: "2px",
+                  borderRadius: cat.name === "Movies & TV" ? "50%" : "0%", // Border radius only for "Movies & TV"
+                  background: cat.name === "Movies & TV"
+                    ? "linear-gradient(185deg, #FF6767, #6A5ACD)" // Gradient border for "Movies & TV"
+                    : "none",
+                  padding: cat.name === "Movies & TV" ? "2px" : "0",
                   display: "flex",
                   alignItems: "center",
                   justifyContent: "center",
@@ -70,11 +79,11 @@ const Recommendations = () => {
                   src={cat.icon}
                   alt={`${cat.name} Icon`}
                   style={{
-                    width: "100%",
-                    height: "100%",
-                    borderRadius: "50%", // Make the image round
+                    width: cat.name === "Movies & TV" ? "100%" : "70%",
+                    height: cat.name === "Movies & TV" ? "100%" : "70%",
+                    borderRadius: cat.name === "Movies & TV" ? "50%" : "0%",
                     objectFit: "cover",
-                    backgroundColor: "#fff", // White background inside the border
+                    backgroundColor: "#fff",
                   }}
                 />
               </div>
@@ -87,17 +96,17 @@ const Recommendations = () => {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(450px, 1fr))", // Ensure cards are responsive
-            gap: "0px", // Decrease space between cards
-            justifyContent: "center", // Center the grid
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, max-content))", // Prevent stretching for single card
+            gap: "20px", // Add space between cards
+            justifyContent: "start", // Align cards to the start
           }}
         >
           {movies.map((movie: any) => (
             <div
               key={movie.title}
               style={{
-            marginTop: "30px",
-                width: "450px", // Ensure card takes full width of its grid cell
+                width: "300px",
+                marginTop: "30px",
                 borderRadius: "12px",
                 boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
                 overflow: "hidden",
@@ -110,7 +119,11 @@ const Recommendations = () => {
               <img
                 src={movie.image}
                 alt={movie.title}
-                style={{ height: "300px",width: "100%"}}
+                style={{
+                  height: "300px",
+                  width: "100%",
+                  // objectFit: "cover", // Ensure image fits within the card
+                }}
               />
               <div
                 style={{
@@ -158,15 +171,15 @@ const Recommendations = () => {
                   padding: "5px",
                   cursor: "pointer",
                   boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-                  transition: "transform 0.2s, background-color 0.2s", // Add transition for hover effect
+                  transition: "transform 0.2s, background-color 0.2s",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.backgroundColor = "#e041b1"; // Change background color on hover
-                  e.currentTarget.style.transform = "scale(1.1)"; // Slightly scale up on hover
+                  e.currentTarget.style.backgroundColor = "#e041b1";
+                  e.currentTarget.style.transform = "scale(1.1)";
                 }}
                 onMouseLeave={(e) => {
-                  e.currentTarget.style.backgroundColor = "white"; // Revert background color
-                  e.currentTarget.style.transform = "scale(1)"; // Revert scale
+                  e.currentTarget.style.backgroundColor = "white";
+                  e.currentTarget.style.transform = "scale(1)";
                 }}
                 title="Delete"
               >

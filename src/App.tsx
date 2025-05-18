@@ -5,6 +5,7 @@ import { MiddleSection } from "./middle-section";
 import Recommendations from "./mainComponents/Recommendations";
 import { SidebarProvider } from './sidebar-context';
 import {History} from './mainComponents/History';
+import { TopSection } from './top-section';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Flex minH='100dvh'>
           <Sidebar />
           <Box flex='1'>
+          <TopSection/>
             <Routes>
               <Route path="/" element={<MiddleSection />} />
               <Route path="/recommendations" element={<Recommendations />} />

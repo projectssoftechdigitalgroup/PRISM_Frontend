@@ -5,7 +5,9 @@ export function History() {
   const [bookmarkedMovies, setBookmarkedMovies] = useState<string[]>([]);
 
   useEffect(() => {
-    const storedBookmarks = JSON.parse(localStorage.getItem("bookmarkedMovies") || "[]");
+    const storedBookmarks = JSON.parse(
+      localStorage.getItem("bookmarkedMovies") || "[]"
+    );
     setBookmarkedMovies(storedBookmarks);
   }, []);
 
@@ -19,11 +21,19 @@ export function History() {
   };
 
   const toggleBookmark = (movie: any) => {
-    const isBookmarked = bookmarkedMovies.some((m: any) => m.title === movie.title);
+    const isBookmarked = bookmarkedMovies.some(
+      (m: any) => m.title === movie.title
+    );
     if (!isBookmarked) {
-      const updatedBookmarks = [...bookmarkedMovies, { ...movie, bgColor: getRandomColor(bookmarkedMovies.length) }];
+      const updatedBookmarks = [
+        ...bookmarkedMovies,
+        { ...movie, bgColor: getRandomColor(bookmarkedMovies.length) },
+      ];
       setBookmarkedMovies(updatedBookmarks);
-      localStorage.setItem("bookmarkedMovies", JSON.stringify(updatedBookmarks));
+      localStorage.setItem(
+        "bookmarkedMovies",
+        JSON.stringify(updatedBookmarks)
+      );
     }
   };
 
@@ -84,12 +94,19 @@ export function History() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          padding: "16px",
         }}
       >
-        <div style={{ textAlign: "center", maxWidth: "600px", width: "100%" }}>
+        <div
+          style={{
+            textAlign: "center",
+            maxWidth: "90%", // Adjust width for responsiveness
+            width: "100%",
+          }}
+        >
           <h1
             style={{
-              fontSize: "70px",
+              fontSize: "clamp(40px, 5vw, 70px)", // Responsive font size
               fontWeight: "bold",
               color: "#e041b1",
               marginBottom: "16px",
@@ -97,38 +114,50 @@ export function History() {
           >
             Prism
           </h1>
-          <p style={{ fontSize: "18px", color: "black" }}>
+          <p
+            style={{
+              fontSize: "clamp(14px, 2vw, 18px)", // Responsive font size
+              color: "black",
+            }}
+          >
             Get personalized recommendations that match your vibe.
           </p>
-        </div>
-      </div>
-      <div
-        style={{
-          flex: 1,
-          maxWidth: "600px",
-          margin: "0",
-          marginLeft: "100px",
-          alignSelf: "flex-start",
-          textAlign: "left", // Align text to the left
-        }}
-      >
-        <div style={{ marginBottom: "16px" }}>
-          <p style={{ fontSize: "16px", color: "black" }}>
-            Let me know for which category you want recommendations:
-          </p>
-          <ul style={{ paddingLeft: "16px", marginTop: "8px", color: "black" }}>
-            <li style={{ fontSize: "14px" }}>1. Food & Dining</li>
-            <li style={{ fontSize: "14px" }}>2. Movies & TV</li>
-            <li style={{ fontSize: "14px" }}>3. Travelling</li>
-          </ul>
         </div>
       </div>
 
       {/* Prompt Section */}
       <div
         style={{
+          textAlign: "left",
+          marginRight: "5%",
+          marginBottom: "24px",
+          fontSize: "16px",
+          color: "#606060",
+        }}
+      >
+        <p
+          style={{
+            // backgroundColor: "#F0F2F6",
+            color: "black",
+            marginLeft: "4.3%",
+            padding: "12px",
+            borderRadius: "8px",
+            display: "inline-block",
+            maxWidth: "90%", // Adjust width for responsiveness
+            wordWrap: "break-word", // Handle long text
+          }}
+        >
+          Let me know for which category you want recommendations: <br />
+          1. Food & Dining <br />
+          2. Movies & TV <br />
+          3. Travelling <br />
+        </p>
+      </div>
+      {/* Prompt Section */}
+      <div
+        style={{
           textAlign: "right",
-          marginRight: "100px",
+          marginRight: "5%",
           marginBottom: "24px",
           fontSize: "16px",
           color: "#606060",
@@ -140,42 +169,40 @@ export function History() {
             padding: "12px",
             borderRadius: "8px",
             display: "inline-block",
+            maxWidth: "90%", // Adjust width for responsiveness
+            wordWrap: "break-word", // Handle long text
           }}
         >
           Give me inspiring movies based on personal growth like my life story
         </p>
       </div>
-
       {/* Generated Answer Section */}
       <div
         style={{
           flex: 1,
-          maxWidth: "600px",
-          margin: "0",
-          marginLeft: "100px",
-          alignSelf: "flex-start",
-          textAlign: "left", // Align text to the left
+          maxWidth: "90%", // Adjust width for responsiveness
+          margin: "0 auto", // Center content
+          textAlign: "left",
         }}
       >
         <div style={{ marginBottom: "16px" }}>
           <p style={{ fontSize: "16px", color: "black" }}>
             Here are 4 thoughtful, emotionally resonant movies that reflect
             themes of personal growth, relationships, and life turning
-            points—great for someone reflecting on their own journey: 
-            Boyhood(2014) Little Miss Sunshine (2006) The Pursuit of Happyness (2006)
-            Into the Wild (2007)
+            points—great for someone reflecting on their own journey:
+            Boyhood(2014) Little Miss Sunshine (2006) The Pursuit of Happyness
+            (2006) Into the Wild (2007)
           </p>
         </div>
       </div>
-
       {/* Movie Cards Section */}
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-          gap: "30px",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", // Responsive grid layout
+          gap: "20px",
           justifyContent: "center",
-          padding: "0 100px", // Add space from left and right
+          padding: "0 5%", // Add space from left and right
         }}
       >
         {movies.map((movie) => (
@@ -199,7 +226,6 @@ export function History() {
                 width: "100%",
               }}
             />
-            
             {/* Bookmark Icon */}
             <div
               onClick={() => toggleBookmark(movie)}
@@ -212,22 +238,30 @@ export function History() {
                 padding: "8px",
                 cursor: "pointer",
                 boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
-                transition: "transform 0.2s, background-color 0.2s", // Add transition for hover effect
+                transition: "transform 0.2s, background-color 0.2s",
               }}
-              title={bookmarkedMovies.some((m: any) => m.title === movie.title) ? "Bookmarked" : "Bookmark"}
+              title={
+                bookmarkedMovies.some((m: any) => m.title === movie.title)
+                  ? "Bookmarked"
+                  : "Bookmark"
+              }
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = "gary"; // Change background color on hover
-                e.currentTarget.style.transform = "scale(1.1)"; // Slightly scale up on hover
+                e.currentTarget.style.backgroundColor = "gray";
+                e.currentTarget.style.transform = "scale(1.1)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = "white"; // Revert background color
-                e.currentTarget.style.transform = "scale(1)"; // Revert scale
+                e.currentTarget.style.backgroundColor = "white";
+                e.currentTarget.style.transform = "scale(1)";
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 24 24"
-                fill={bookmarkedMovies.some((m: any) => m.title === movie.title) ? "#e041b1" : "none"}
+                fill={
+                  bookmarkedMovies.some((m: any) => m.title === movie.title)
+                    ? "#e041b1"
+                    : "none"
+                }
                 stroke="#e041b1"
                 strokeWidth="2"
                 width="20"
@@ -239,7 +273,6 @@ export function History() {
           </div>
         ))}
       </div>
-
       {/* Input Field Section */}
       <div
         style={{
@@ -253,7 +286,7 @@ export function History() {
           style={{
             display: "flex",
             alignItems: "center",
-            maxWidth: "600px",
+            maxWidth: "90%", // Adjust width for responsiveness
             width: "100%",
             backgroundColor: "#F0F2F6",
             borderRadius: "24px",

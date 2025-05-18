@@ -29,12 +29,19 @@ export function MiddleSection() {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          padding: "16px",
         }}
       >
-        <div style={{textAlign: "center", maxWidth: "600px", width: "100%" }}>
+        <div
+          style={{
+            textAlign: "center",
+            maxWidth: "90%", // Adjust width for responsiveness
+            width: "100%",
+          }}
+        >
           <h1
             style={{
-              fontSize: "70px",
+              fontSize: "clamp(40px, 5vw, 70px)", // Responsive font size
               fontWeight: "bold",
               color: "#e041b1",
               marginBottom: "16px",
@@ -42,7 +49,12 @@ export function MiddleSection() {
           >
             Prism
           </h1>
-          <p style={{ fontSize: "18px", color: "black" }}>
+          <p
+            style={{
+              fontSize: "clamp(14px, 2vw, 18px)", // Responsive font size
+              color: "black",
+            }}
+          >
             Get personalized recommendations that match your vibe.
           </p>
         </div>
@@ -50,23 +62,44 @@ export function MiddleSection() {
       <div
         style={{
           flex: 1,
-          maxWidth: "600px",
-          margin: "0",
-          marginLeft: "100px",
-          alignSelf: "flex-start",
-          textAlign: "left", // Align text to the left
+          maxWidth: "90%", // Adjust width for responsiveness
+          margin: "0 auto", // Center content
+          textAlign: "left",
         }}
       >
-        <div style={{ marginBottom: "20px" }}>
+        <div>
           <p style={{ fontSize: "16px", color: "black" }}>
             Let me know for which category you want recommendations:
           </p>
-          <ul style={{ paddingLeft: "16px", marginTop: "8px", color: "black" }}>
+          <ul style={{ paddingLeft: "16px", color: "black" }}>
             <li style={{ fontSize: "14px" }}>1. Food & Dining</li>
             <li style={{ fontSize: "14px" }}>2. Movies & TV</li>
             <li style={{ fontSize: "14px" }}>3. Travelling</li>
           </ul>
         </div>
+      </div>
+      {/* Prompt Section */}
+      <div
+        style={{
+          marginBottom: "40px", // Adjust margin for responsiveness
+          textAlign: "right",
+          marginRight: "5%",
+          fontSize: "16px",
+          color: "#606060",
+        }}
+      >
+        <p
+          style={{
+            backgroundColor: "#F0F2F6",
+            padding: "12px",
+            borderRadius: "8px",
+            display: "inline-block",
+            maxWidth: "90%", // Adjust width for responsiveness
+            wordWrap: "break-word", // Handle long text
+          }}
+        >
+          Give me inspiring movies based on personal growth like my life story
+        </p>
       </div>
       <div
         style={{
@@ -80,7 +113,7 @@ export function MiddleSection() {
           style={{
             display: "flex",
             alignItems: "center",
-            maxWidth: "600px",
+            maxWidth: "90%", // Adjust width for responsiveness
             width: "100%",
             backgroundColor: "#F0F2F6",
             borderRadius: "24px",

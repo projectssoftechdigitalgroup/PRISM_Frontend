@@ -1,12 +1,14 @@
 import { Flex, IconButton } from '@chakra-ui/react';
-import { ChatGPTMenu } from './ChatGPTMenu';
+// import { ChatGPTMenu } from './ChatGPTMenu';
 // import { Avatar } from './components/ui/avatar';
 import { Tooltip } from './components/ui/tooltip';
 import { NewChatIcon, SidebarIcon } from './icons/sidebar-icons';
 import { useSidebarContext } from './sidebar-context';
+import { useNavigate } from 'react-router-dom';
 
 export function TopSection() {
   const { sideBarVisible, toggleSidebar } = useSidebarContext();
+  const navigate = useNavigate()
   return (
     <Flex
       justify='space-between'
@@ -30,13 +32,13 @@ export function TopSection() {
 
           <Tooltip content='New chat' showArrow>
             <IconButton variant='ghost' _hover={{ bg: '#E4E4E7' }}>
-              <NewChatIcon fontSize='2xl' color='gray.800' />
+              <NewChatIcon onClick={()=> navigate("/")} fontSize='2xl' color='gray.800' />
             </IconButton>
           </Tooltip>
-          <ChatGPTMenu />
+          {/* <ChatGPTMenu /> */}
         </Flex>
       )}
-      {sideBarVisible && <ChatGPTMenu />}
+      {/* {sideBarVisible && <ChatGPTMenu />} */}
     </Flex>
   );
 }

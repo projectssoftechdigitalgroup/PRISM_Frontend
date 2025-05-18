@@ -1,26 +1,16 @@
-import {
-  Box,
-  Flex,
-  HStack,
-  IconButton,
-  Stack,
-  Text,
-} from "@chakra-ui/react";
+import { Box, Flex, HStack, IconButton, Stack, Text } from "@chakra-ui/react";
 import { Tooltip } from "./components/ui/tooltip";
-import {
-  NewChatIcon,
-  SidebarIcon,
-} from "./icons/sidebar-icons";
+import { NewChatIcon, SidebarIcon } from "./icons/sidebar-icons";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import RecommendationIcon from "../src/assets/icons/recommend 1.png"
-import ProfileIcon from "../src/assets/icons/profile.png"
+import RecommendationIcon from "../src/assets/icons/recommend 1.png";
+import ProfileIcon from "../src/assets/icons/profile.png";
+import { CiSearch } from "react-icons/ci";
 
-
-// import { useSidebarContext } from "./sidebar-context";
+import { useSidebarContext } from "./sidebar-context";
 
 export function Sidebar() {
-  // const { sideBarVisible, toggleSidebar } = useSidebarContext();
+  const { sideBarVisible, toggleSidebar } = useSidebarContext();
   const navigate = useNavigate();
 
   const [showDropdown, setShowDropdown] = useState(false);
@@ -41,6 +31,8 @@ export function Sidebar() {
       "Can You Draft me formal Email for a Cli...",
       "Can You Draft me formal Email for a Cli...",
       "Can You Draft me formal Email for a Cli...",
+      "Can You Draft me formal Email for a Cli...",
+      "Can You Draft me formal Email for a Cli...",
     ],
   };
 
@@ -51,15 +43,20 @@ export function Sidebar() {
   return (
     <Box
       bg="#F0F2F6"
-      // w={!sideBarVisible ? "0" : "260px"}
+      w={!sideBarVisible ? "0" : { base: "100%", sm: "260px" }} // Full width on mobile screens
+      position={{ base: "absolute", sm: "relative" }} // Position absolute for mobile
+      top="0"
+      left="0"
+      minH="100%" // Make height dynamic based on content
       overflow="hidden"
       transition="width 0.3s"
       boxShadow="md"
       borderRight="0.8px solid "
       borderColor="gray.300"
+      zIndex="10" // Ensure it appears above other elements
     >
       <Stack h="full" px="4" py="3" color="black">
-        <Flex justify="space-between" align="center" mb="4">
+        <Flex justify="space-between" align="center" mb="4" gap="2">
           <Tooltip
             content="Close sidebar"
             positioning={{ placement: "right" }}
@@ -67,25 +64,32 @@ export function Sidebar() {
           >
             <IconButton
               variant="ghost"
-              // onClick={toggleSidebar}
-              _hover={{ bg: "#E4E4E7" }} // Updated hover effect color
+              onClick={toggleSidebar}
+              _hover={{ bg: "#E4E4E7" }}
             >
               <SidebarIcon fontSize="2xl" color="black" />
+            </IconButton>
+          </Tooltip>
+          <Tooltip content="search" showArrow>
+            <IconButton
+              variant="ghost"
+              _hover={{ bg: "#E4E4E7" }}
+              onClick={() => navigate("/")}
+            >
+              <CiSearch fontSize="2xl" color="black" />
             </IconButton>
           </Tooltip>
           <Tooltip content="New chat" showArrow>
             <IconButton
               variant="ghost"
-              _hover={{ bg: "#E4E4E7" }} // Updated hover effect color
+              _hover={{ bg: "#E4E4E7" }}
               onClick={() => navigate("/")}
             >
-              <NewChatIcon fontSize="2xl" color="black" />
+              <NewChatIcon fontWeight="bold" fontSize="2xl" color="black" />
             </IconButton>
           </Tooltip>
         </Flex>
         <Stack px="2" gap="2" flex="1">
-
-          
           {/* Recommendations Tab */}
           <HStack
             _hover={{
@@ -100,7 +104,12 @@ export function Sidebar() {
             onClick={() => navigate("/recommendations")}
           >
             <Flex align="center" gap="2">
-              <img width={"50px"} height={"50px"} src={RecommendationIcon} alt="not found" />
+              <img
+                width={"50px"}
+                height={"50px"}
+                src={RecommendationIcon}
+                alt="not found"
+              />
               <Text
                 style={{ color: "black" }}
                 fontSize="15px"
@@ -110,7 +119,6 @@ export function Sidebar() {
               </Text>
             </Flex>
           </HStack>
-
           {/* Profile Tab */}
           <HStack
             _hover={{
@@ -125,7 +133,12 @@ export function Sidebar() {
           >
             <NavLink to="/" style={{ textDecoration: "none", width: "100%" }}>
               <Flex align="center" gap="2">
-                <img width={"50px"} height={"50px"} src={ProfileIcon} alt="not found" />
+                <img
+                  width={"50px"}
+                  height={"50px"}
+                  src={ProfileIcon}
+                  alt="not found"
+                />
                 <Text
                   style={{ color: "black" }}
                   fontSize="15px"
@@ -136,12 +149,10 @@ export function Sidebar() {
               </Flex>
             </NavLink>
           </HStack>
-
           {/* History Tab */}
           <div>
-            {/* Header */}
             <Box
-            _hover={{ bg: "#E4E4E7" }}
+              _hover={{ bg: "#E4E4E7" }}
               onClick={toggleDropdown}
               style={{
                 padding: "5px 5px",
@@ -151,7 +162,7 @@ export function Sidebar() {
                 marginBottom: "10px",
                 cursor: "pointer",
               }}
-              >
+            >
               <Flex align="center" gap="2">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -183,8 +194,6 @@ export function Sidebar() {
                 ⌄
               </span>
             </Box>
-
-            {/* History Dropdown */}
             <div
               style={{
                 maxHeight: showDropdown ? "500px" : "0",
@@ -207,8 +216,7 @@ export function Sidebar() {
                   {items.map((item, index) => (
                     <div
                       key={index}
-                      // onClick={() => handleHistoryClick(item)}
-                      onClick={() =>navigate("/history")}
+                      onClick={() => navigate("/history")}
                       style={{
                         fontSize: "13px",
                         padding: "8px 10px",
@@ -222,7 +230,9 @@ export function Sidebar() {
                       }
                       onMouseLeave={(e) =>
                         (e.currentTarget.style.backgroundColor =
-                          index === 0 && section === "Today" ? "#eee" : "transparent")
+                          index === 0 && section === "Today"
+                            ? "#eee"
+                            : "transparent")
                       }
                     >
                       {item}
