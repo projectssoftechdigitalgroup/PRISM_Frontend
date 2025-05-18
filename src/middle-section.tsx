@@ -18,7 +18,7 @@ export function MiddleSection() {
       style={{
         display: "flex",
         flexDirection: "column",
-        minHeight: "100vh",
+        height: "100vh", // Make height dynamic based on content
         backgroundColor: "#FFFFFF",
         padding: "24px",
       }}
@@ -59,24 +59,34 @@ export function MiddleSection() {
           </p>
         </div>
       </div>
+     
+      {/* Prompt Section */}
       <div
         style={{
-          flex: 1,
-          maxWidth: "90%", // Adjust width for responsiveness
-          margin: "0 auto", // Center content
           textAlign: "left",
+          marginRight: "5%",
+          marginBottom: "24px",
+          fontSize: "16px",
+          color: "#606060",
         }}
       >
-        <div>
-          <p style={{ fontSize: "16px", color: "black" }}>
-            Let me know for which category you want recommendations:
-          </p>
-          <ul style={{ paddingLeft: "16px", color: "black" }}>
-            <li style={{ fontSize: "14px" }}>1. Food & Dining</li>
-            <li style={{ fontSize: "14px" }}>2. Movies & TV</li>
-            <li style={{ fontSize: "14px" }}>3. Travelling</li>
-          </ul>
-        </div>
+        <p
+          style={{
+            // backgroundColor: "#F0F2F6",
+            color: "black",
+            marginLeft: "4.3%",
+            padding: "12px",
+            borderRadius: "8px",
+            display: "inline-block",
+            maxWidth: "90%", // Adjust width for responsiveness
+            wordWrap: "break-word", // Handle long text
+          }}
+        >
+          Let me know for which category you want recommendations: <br />
+          1. Food & Dining <br />
+          2. Movies & TV <br />
+          3. Travelling <br />
+        </p>
       </div>
       {/* Prompt Section */}
       <div

@@ -63,6 +63,7 @@ export function Sidebar() {
             showArrow
           >
             <IconButton
+            marginEnd={"30%"}
               variant="ghost"
               onClick={toggleSidebar}
               _hover={{ bg: "#E4E4E7" }}
