@@ -84,7 +84,7 @@ export function Sidebar() {
             <IconButton
               variant="ghost"
               _hover={{ bg: "#E4E4E7" }}
-              onClick={() => navigate("/")}
+              onClick={() => navigate("/middlesection")}
             >
               <NewChatIcon fontWeight="bold" fontSize="2xl" color="black" />
             </IconButton>
@@ -132,7 +132,7 @@ export function Sidebar() {
             w="100%"
             whiteSpace="nowrap"
           >
-            <NavLink to="/" style={{ textDecoration: "none", width: "100%" }}>
+            <NavLink to="/middlesection" style={{ textDecoration: "none", width: "100%" }}>
               <Flex align="center" gap="2">
                 <img
                   width={"50px"}
