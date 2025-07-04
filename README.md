@@ -1,116 +1,50 @@
-# Prisma Frontend
+# ChatGPT Clone Tutorial
 
-## Overview
+Welcome to the ChatGPT Clone tutorial! 🚀 In this project, we’ll build a simple ChatGPT-style application using Vite, React, TypeScript, and Chakra UI v3 for a fast, modern, and highly customizable user interface.
 
-This project is a modern and responsive frontend for the Prisma application. It includes a sidebar, content area, and prompt area, all designed to be visually appealing and fully responsive across all devices.
+### Follow along this Tutorial:
 
----
+📽️ https://youtube.com/playlist?list=PLx2Y9Sna27Xtmbo3CAbHvQJFU064zB4kF&si=zOu4HeKmfFbWpL_0
 
-## Features
+This tutorial is an excellent way to learn how to use Chakra UI for styling and theming.
 
-### 1. **Sidebar**
-- A collapsible sidebar that can be toggled open or closed.
-- Includes a logo and buttons for navigation (`Profile` and `Recommendation`).
-- Smooth animations for opening and closing.
-- Fully responsive:
-  - Adjusts layout dynamically based on screen size.
-  - Compact width when closed.
+## Tech Stack
 
-### 2. **Content Area**
-- Displays the main content of the application.
-- Includes a title (`Prism`), a description, and additional text.
-- Fully responsive:
-  - Centers content with space on both sides.
-  - Adjusts font sizes and layout for smaller screens.
-  - Dynamically adjusts layout based on the sidebar state.
+- Vite: For fast and optimized development with zero config.
+- React: The UI library for building our interface.
+- TypeScript: Adding static typing to JavaScript for improved development experience.
+- Chakra UI v3: The latest version of Chakra UI.
 
-### 3. **Prompt Area**
-- A floating input area at the bottom of the screen, similar to ChatGPT's UI.
-- Includes an input field and a submit button.
-- Fully responsive:
-  - Stacks input and button vertically on smaller screens.
-  - Dynamically adjusts position to avoid being covered by the sidebar.
+## Getting Started
 
----
+### Prerequisites
 
-## Technologies Used
+Before you begin, ensure you have Node.js (v20 or above)
 
-- **React**: For building the user interface.
-- **Material-UI (MUI)**: For styling components and using modern icons.
-- **CSS**: For additional custom styling and responsiveness.
+### Installation
 
----
+- Clone this repository:
 
-## File Structure
+```bash
+git clone https://github.com/estheragbaje/chatgpt-clone-tutorial.git
+```
 
-### Components
-- **`Sidebar.jsx`**: Handles the collapsible sidebar functionality.
-- **`ContentArea.jsx`**: Displays the main content of the application.
-- **`PromptArea.jsx`**: Provides a floating input area for user interaction.
+- Go into the directory
 
-### Styles
-- **Material-UI (MUI)**: Used for styling and responsiveness.
-- **Custom CSS**: Used for additional styling and layout adjustments.
+```bash
+cd chatgpt-clone-tutorial
+```
 
----
+- Install dependencies:
 
-## Responsive Design
+```bash
+npm install
+```
 
-### General Approach
-- Used Material-UI's `Box`, `Container`, and `Typography` components for layout and styling.
-- Added responsive properties like `flexDirection`, `padding`, and `fontSize` to adjust styles for smaller screens.
-- Ensured all components are usable and visually appealing on devices of all sizes.
+- Start the development server:
 
-### Specific Adjustments
-- **Sidebar**:
-  - Dynamically adjusts width and layout based on the open/close state.
-  - Compact width when closed to maximize screen space.
-- **Content Area**:
-  - Centers content with a maximum width for readability.
-  - Adjusts font sizes, spacing, and layout for smaller screens.
-  - Dynamically adjusts margin to avoid being overlapped by the sidebar.
-- **Prompt Area**:
-  - Floating at the bottom of the screen.
-  - Dynamically adjusts position to avoid being covered by the sidebar.
-  - Stacks input and button vertically on smaller screens.
+```bash
+npm run dev
+```
 
----
-
-## How to Run
-
-1. Clone the repository:
-   ```bash
-   git clone <repository-url>
-   ```
-2. Navigate to the project directory:
-   ```bash
-   cd prism-frontend
-   ```
-3. Install dependencies:
-   ```bash
-   npm install
-   ```
-4. Start the development server:
-   ```bash
-   npm start
-   ```
-5. Open the application in your browser at `http://localhost:5173`.
-
----
-
-## Future Improvements
-
-- Add more navigation options to the sidebar.
-- Integrate backend APIs for dynamic content.
-- Enhance accessibility for better usability.
-- Add animations for smoother transitions.
-
----
-
-## Contributors
-
-- **Meraj Ali** - Frontend Development and Design
-
----
-
-
+This will launch the app on http://localhost:5173 (or as specified in the terminal).
